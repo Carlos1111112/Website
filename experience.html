@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Experiencia – Carlos Rojas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --font-console:'JetBrains Mono',monospace; --color-primary:#61dafb; --bg:#1e1e1e; --text:#e0e0e0; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family:var(--font-console);background:var(--bg);color:var(--text);line-height:1.6}
+    .navbar{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:rgba(30,30,30,.8);backdrop-filter:blur(8px);z-index:10}
+    .logo{color:var(--color-primary);font-weight:700;font-size:1.4rem}
+    .nav-links{list-style:none;display:flex;gap:1.25rem}
+    .nav-links a{text-decoration:none;color:#ddd;position:relative}
+    .nav-links a:hover,.nav-links a.active{color:var(--color-primary)}
+    .page-hero{min-height:100vh;display:flex;align-items:center;justify-content:center;background:url('images/experience-hero.jpg') center/cover no-repeat;position:relative}
+    .page-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,.45),rgba(0,0,0,.55))}
+    .hero-inner{position:relative;text-align:center;padding:2rem 1.5rem;border:1px solid rgba(97,218,251,.35);background:rgba(15,15,15,.55);backdrop-filter:blur(6px);border-radius:10px}
+    .hero-inner h1{color:var(--color-primary);font-size:2.25rem}
+    .container{max-width:1100px;margin:0 auto;padding:2rem 1rem}
+    .card{background:rgba(60,60,60,.8);border:1px solid rgba(97,218,251,.2);border-radius:10px;padding:1.25rem;margin:.85rem 0}
+    .lang-switcher{position:fixed;top:1rem;left:1rem;background:rgba(30,30,30,.85);padding:.25rem .5rem;border-radius:8px;z-index:20}
+    .lang-switcher button{background:none;border:none;color:#ddd;font-weight:700;cursor:pointer}
+    .lang-switcher button.active{color:var(--color-primary)}
+    footer{padding:2rem 1rem;text-align:center;background:#111;margin-top:2rem}
+    @media (max-width:768px){.hero-inner h1{font-size:1.75rem}}
+  </style>
+</head>
+<body>
+  <div class="lang-switcher"><button id="lang-es" class="active">ES</button> | <button id="lang-en">EN</button></div>
+
+  <nav class="navbar">
+    <div class="logo">Carlos Rojas</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="about.html">Sobre mí</a></li>
+      <li><a href="experience.html">Experiencia</a></li>
+      <li><a href="projects.html">Proyectos</a></li>
+      <li><a href="research.html">Investigación</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-hero">
+    <div class="hero-inner">
+      <div class="lang" data-lang="es"><h1>Experiencia</h1></div>
+      <div class="lang" data-lang="en" style="display:none"><h1>Experience</h1></div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="lang" data-lang="es">
+      <div class="card">
+        <h3>Harvard Summer School Program</h3>
+        <p>Principles of Economics: Micro y Macro. Análisis de mercados, política fiscal, teoría monetaria y econometría básica.</p>
+      </div>
+      <div class="card">
+        <h3>Desarrollador Web Freelance</h3>
+        <p>HTML, CSS, JavaScript y Python para empresas locales y proyectos personales.</p>
+      </div>
+      <div class="card">
+        <h3>Investigación Junior</h3>
+        <p>Política monetaria peruana e inflación (1996–2024).</p>
+      </div>
+    </div>
+    <div class="lang" data-lang="en" style="display:none">
+      <div class="card">
+        <h3>Harvard Summer School Program</h3>
+        <p>Principles of Economics: Micro & Macro. Markets, fiscal policy, monetary theory, basic econometrics.</p>
+      </div>
+      <div class="card">
+        <h3>Freelance Web Developer</h3>
+        <p>HTML, CSS, JavaScript, and Python for local businesses and personal projects.</p>
+      </div>
+      <div class="card">
+        <h3>Junior Research</h3>
+        <p>Peruvian monetary policy and inflation (1996–2024).</p>
+      </div>
+    </div>
+  </main>
+
+  <footer><p>© 2025 Carlos Rojas</p></footer>
+
+  <script>
+    const setLang = (l)=>{document.documentElement.lang=l;document.querySelectorAll('.lang').forEach(e=>e.style.display=e.dataset.lang===l?'block':'none');document.querySelectorAll('#lang-es,#lang-en').forEach(b=>b.classList.toggle('active',b.id==='lang-'+l));};
+    document.getElementById('lang-es').onclick=()=>setLang('es');document.getElementById('lang-en').onclick=()=>setLang('en');setLang('es');
+    (function(){const here=location.pathname.split('/').pop()||'experience.html';document.querySelectorAll('.nav-links a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')===here));})();
+    window.addEventListener('scroll',()=>{const n=document.querySelector('.navbar');if(scrollY>50){n.style.background='rgba(30,30,30,.95)';n.style.boxShadow='0 2px 20px rgba(0,0,0,.5)';}else{n.style.background='rgba(30,30,30,.8)';n.style.boxShadow='none';}});
+  </script>
+</body>
+</html>
